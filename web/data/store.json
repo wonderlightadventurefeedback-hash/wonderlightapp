@@ -1,0 +1,598 @@
+{
+  "settings": {
+    "signupBonus": 500,
+    "currency": "INR",
+    "updatedAt": "2026-09-27T13:18:53.749Z"
+  },
+  "bookings": [
+    {
+      "id": "e4f96a33-8c05-4b61-8627-5dd262f0ed38",
+      "bookingId": "WL639348",
+      "userId": "54e7889b-6571-4b09-b2c6-5ddcb0b53412",
+      "serviceCategory": "bom",
+      "serviceType": "Flight to BOM (Akasa Air)",
+      "title": "Flight to BOM (Akasa Air)",
+      "details": "2h 15m • 1 Adults",
+      "travellerName": "Mr suman barik",
+      "email": "ssimanbarik@gmail.com",
+      "phone": "8018207278",
+      "totalAmount": 4499,
+      "bookingDate": "15 Oct 2026",
+      "status": "Confirmed",
+      "createdAt": "2026-09-27T13:13:10.613297+00:00"
+    },
+    {
+      "id": "8ce96784-db0b-4166-8bb0-ef9a0927fde8",
+      "bookingId": "WLAD766973",
+      "userId": "f499898d-a29d-47e6-ad2e-10449a250311",
+      "serviceCategory": "3865e02d-671d-40a8-938b-bbeb19249665",
+      "serviceType": "Kerala God's Own Country",
+      "title": "Kerala God's Own Country",
+      "details": "7 Days / 6 Nights • 1 Adults",
+      "travellerName": "manoj",
+      "email": "jenam0919@gmail.com",
+      "phone": "7008298804",
+      "totalAmount": 32999,
+      "bookingDate": "27 Sep 2026",
+      "status": "Confirmed",
+      "createdAt": "2026-09-27T12:05:45.868164+00:00"
+    }
+  ],
+  "flights": [
+    {
+      "airline": "Akasa Air",
+      "flightNumber": "raghab",
+      "origin": "dubai",
+      "destination": "india",
+      "departureTime": "08:00",
+      "arrivalTime": "10:15",
+      "duration": "2h 15m",
+      "price": 4999,
+      "stops": "Non-stop",
+      "id": "fli_1790514676144"
+    },
+    {
+      "airline": "Akasa Air",
+      "flightNumber": "raghab",
+      "origin": "dubai",
+      "destination": "india",
+      "departureTime": "08:00",
+      "arrivalTime": "10:15",
+      "duration": "2h 15m",
+      "price": 4999,
+      "stops": "Non-stop",
+      "id": "fli_1790514676136"
+    },
+    {
+      "airline": "Akasa Air",
+      "flightNumber": "raghab",
+      "origin": "dubai",
+      "destination": "india",
+      "departureTime": "08:00",
+      "arrivalTime": "10:15",
+      "duration": "2h 15m",
+      "price": 4999,
+      "stops": "Non-stop",
+      "id": "fli_1790514676128"
+    },
+    {
+      "airline": "Akasa Air",
+      "flightNumber": "raghab",
+      "origin": "dubai",
+      "destination": "india",
+      "departureTime": "08:00",
+      "arrivalTime": "10:15",
+      "duration": "2h 15m",
+      "price": 4999,
+      "stops": "Non-stop",
+      "id": "fli_1790248501905"
+    },
+    {
+      "id": "fl_1",
+      "airline": "IndiGo",
+      "flightNumber": "6E-2419",
+      "origin": "DEL (New Delhi)",
+      "destination": "SXR (Srinagar)",
+      "departureTime": "06:15 AM",
+      "arrivalTime": "07:45 AM",
+      "duration": "1h 30m",
+      "price": 5499,
+      "stops": "Non-stop"
+    },
+    {
+      "id": "fl_2",
+      "airline": "Air India",
+      "flightNumber": "AI-825",
+      "origin": "BOM (Mumbai)",
+      "destination": "GOI (Goa)",
+      "departureTime": "09:30 AM",
+      "arrivalTime": "10:45 AM",
+      "duration": "1h 15m",
+      "price": 4299,
+      "stops": "Non-stop"
+    },
+    {
+      "id": "fl_3",
+      "airline": "Vistara",
+      "flightNumber": "UK-972",
+      "origin": "BLR (Bengaluru)",
+      "destination": "COK (Kochi)",
+      "departureTime": "11:20 AM",
+      "arrivalTime": "12:30 PM",
+      "duration": "1h 10m",
+      "price": 3899,
+      "stops": "Non-stop"
+    },
+    {
+      "id": "fl_4",
+      "airline": "SpiceJet",
+      "flightNumber": "SG-184",
+      "origin": "DEL (New Delhi)",
+      "destination": "JAI (Jaipur)",
+      "departureTime": "02:15 PM",
+      "arrivalTime": "03:10 PM",
+      "duration": "55m",
+      "price": 2799,
+      "stops": "Non-stop"
+    },
+    {
+      "id": "fl_5",
+      "airline": "Akasa Air",
+      "flightNumber": "QP-1382",
+      "origin": "DEL (New Delhi)",
+      "destination": "IXL (Leh)",
+      "departureTime": "05:40 AM",
+      "arrivalTime": "07:05 AM",
+      "duration": "1h 25m",
+      "price": 6899,
+      "stops": "Non-stop"
+    }
+  ],
+  "hotels": [
+    {
+      "id": "hotel_1",
+      "name": "The Waterfront Resort & Spa",
+      "location": "Boulevard Road, Dal Lake, Srinagar",
+      "pricePerNight": 8499,
+      "rating": 4.8,
+      "amenities": [
+        "Lake View",
+        "Free WiFi",
+        "Breakfast Included",
+        "Heated Pool",
+        "Ayurvedic Spa"
+      ]
+    },
+    {
+      "id": "hotel_2",
+      "name": "Taj Fort Aguada Resort",
+      "location": "Sinquerim Beach, Candolim, Goa",
+      "pricePerNight": 12999,
+      "rating": 4.9,
+      "amenities": [
+        "Private Beach",
+        "Infinity Pool",
+        "Ocean View",
+        "Fine Dining",
+        "Fitness Center"
+      ]
+    },
+    {
+      "id": "hotel_3",
+      "name": "Munnar Tea Hills Luxury Retreat",
+      "location": "Chithirapuram, Munnar, Kerala",
+      "pricePerNight": 6999,
+      "rating": 4.7,
+      "amenities": [
+        "Tea Estate View",
+        "Plantation Tour",
+        "Bonfire",
+        "Ayurvedic Spa",
+        "Mountain View"
+      ]
+    },
+    {
+      "id": "hotel_4",
+      "name": "Umaid Bhawan Heritage Palace",
+      "location": "Circuit House Rd, Jodhpur, Rajasthan",
+      "pricePerNight": 15999,
+      "rating": 4.9,
+      "amenities": [
+        "Royal Suites",
+        "Historical Museum",
+        "Palace Gardens",
+        "Butler Service",
+        "Indoor Pool"
+      ]
+    }
+  ],
+  "villas": [
+    {
+      "id": "villa_1",
+      "name": "SaffronStays Casa Lakeview",
+      "location": "Nigeen Lake, Srinagar",
+      "pricePerNight": 14500,
+      "bedrooms": 4,
+      "guests": 10,
+      "amenities": [
+        "Lakefront Deck",
+        "Private Chef",
+        "Fireplace",
+        "Shikara Pickup",
+        "Heated Bedrooms"
+      ]
+    },
+    {
+      "id": "villa_2",
+      "name": "Villa Marina Palm Breeze",
+      "location": "Candolim Beach, North Goa",
+      "pricePerNight": 18000,
+      "bedrooms": 3,
+      "guests": 8,
+      "amenities": [
+        "Private Plunge Pool",
+        "Beach Access",
+        "BBQ Grill",
+        "Cocktail Bar",
+        "Daily Housekeeping"
+      ]
+    },
+    {
+      "id": "villa_3",
+      "name": "Rainforest Tea Estate Chalet",
+      "location": "Munnar Valleys, Kerala",
+      "pricePerNight": 11500,
+      "bedrooms": 3,
+      "guests": 6,
+      "amenities": [
+        "Panoramic Valley View",
+        "Waterfall Walk",
+        "Organic Farm Food",
+        "Bonfire Gazebo"
+      ]
+    }
+  ],
+  "holidays": [
+    {
+      "id": "kashmir",
+      "title": "Kashmir Escape",
+      "location": "Srinagar • Gulmarg • Pahalgam",
+      "duration": "5 Days / 4 Nights",
+      "price": 24999,
+      "badge": "Best Seller",
+      "inclusions": [
+        "4 nights stay (1N Houseboat, 2N Gulmarg, 1N Pahalgam)",
+        "Daily gourmet breakfast & Kashmiri dinner",
+        "Private chauffeur AC sedan throughout",
+        "Shikara ride on Dal Lake & Gulmarg Gondola passes"
+      ]
+    },
+    {
+      "id": "goa",
+      "title": "Goa Sun & Coast",
+      "location": "North & South Goa Beaches",
+      "duration": "4 Days / 3 Nights",
+      "price": 18999,
+      "badge": "Trending",
+      "inclusions": [
+        "3 nights stay at 4-star beachside resort with pool",
+        "Daily buffet breakfast",
+        "Mandovi river sunset catamaran cruise",
+        "Private AC cab for all sightseeing"
+      ]
+    },
+    {
+      "id": "kerala",
+      "title": "Kerala Backwater Bliss",
+      "location": "Munnar • Thekkady • Alleppey",
+      "duration": "5 Days / 4 Nights",
+      "price": 22999,
+      "badge": "All Inclusive",
+      "inclusions": [
+        "2 nights in Munnar tea valley resort",
+        "1 night in private luxury Alleppey houseboat (all meals)",
+        "Kathakali cultural dance passes & spice plantation tour"
+      ]
+    },
+    {
+      "id": "rajasthan",
+      "title": "Rajasthan Royal Heritage",
+      "location": "Jaipur • Jodhpur • Udaipur",
+      "duration": "5 Days / 4 Nights",
+      "price": 26999,
+      "badge": "Royal Experience",
+      "inclusions": [
+        "4 nights stay in heritage haveli hotels",
+        "Daily royal buffet breakfast",
+        "Lake Pichola sunset boat cruise in Udaipur",
+        "Amber Fort jeep safari in Jaipur"
+      ]
+    },
+    {
+      "id": "ladakh",
+      "title": "Ladakh High Passes",
+      "location": "Leh • Nubra Valley • Pangong Tso",
+      "duration": "6 Days / 5 Nights",
+      "price": 34999,
+      "badge": "Adventure",
+      "inclusions": [
+        "5 nights stay (Leh, Nubra luxury desert camp, Pangong lakeside)",
+        "Khardung La pass safari & camel ride on dunes",
+        "Inner Line permits & oxygen acclimatization support"
+      ]
+    }
+  ],
+  "trains": [
+    {
+      "id": "train_1",
+      "trainName": "Vande Bharat Express",
+      "trainNumber": "22439",
+      "origin": "NDLS (New Delhi)",
+      "destination": "SVDK (Katra / Kashmir Link)",
+      "departureTime": "06:00 AM",
+      "arrivalTime": "02:00 PM",
+      "duration": "8h 00m",
+      "classes": [
+        "Executive Class (EC)",
+        "Chair Car (CC)"
+      ],
+      "price": 1665
+    },
+    {
+      "id": "train_2",
+      "trainName": "Goa Rajdhani Express",
+      "trainNumber": "12450",
+      "origin": "NZM (Hazrat Nizamuddin)",
+      "destination": "MAO (Madgaon, Goa)",
+      "departureTime": "06:15 AM",
+      "arrivalTime": "11:30 AM (Next Day)",
+      "duration": "29h 15m",
+      "classes": [
+        "1st AC (1A)",
+        "2nd AC (2A)",
+        "3rd AC (3A)"
+      ],
+      "price": 3480
+    },
+    {
+      "id": "train_3",
+      "trainName": "Kerala Vande Bharat Express",
+      "trainNumber": "20634",
+      "origin": "TVC (Thiruvananthapuram)",
+      "destination": "CAN (Kannur)",
+      "departureTime": "05:15 AM",
+      "arrivalTime": "12:13 PM",
+      "duration": "6h 58m",
+      "classes": [
+        "Executive (EC)",
+        "Chair Car (CC)"
+      ],
+      "price": 1400
+    },
+    {
+      "id": "train_4",
+      "trainName": "Ajmer Vande Bharat Express",
+      "trainNumber": "20978",
+      "origin": "DEC (Delhi Cantt)",
+      "destination": "JP (Jaipur Junction)",
+      "departureTime": "06:10 AM",
+      "arrivalTime": "09:55 AM",
+      "duration": "3h 45m",
+      "classes": [
+        "Executive (EC)",
+        "Chair Car (CC)"
+      ],
+      "price": 880
+    }
+  ],
+  "buses": [
+    {
+      "id": "bus_1",
+      "operator": "Zingbus Premium Sleeper",
+      "busType": "Volvo 9600 Multi-Axle AC Sleeper",
+      "origin": "New Delhi (ISBT Kashmiri Gate)",
+      "destination": "Srinagar Tourist Reception Centre",
+      "departureTime": "17:30 PM",
+      "arrivalTime": "09:45 AM",
+      "price": 1850,
+      "rating": 4.8
+    },
+    {
+      "id": "bus_2",
+      "operator": "Intrcity SmartBus",
+      "busType": "BharatBenz AC Sleeper (2+1)",
+      "origin": "Mumbai (Borivali)",
+      "destination": "Goa (Panjim)",
+      "departureTime": "19:00 PM",
+      "arrivalTime": "07:30 AM",
+      "price": 1350,
+      "rating": 4.7
+    },
+    {
+      "id": "bus_3",
+      "operator": "KSRTC Airavat Club Class",
+      "busType": "Scania Multi-Axle AC Semi-Sleeper",
+      "origin": "Bengaluru (Majestic)",
+      "destination": "Munnar (KSRTC Bus Stand)",
+      "departureTime": "21:30 PM",
+      "arrivalTime": "07:15 AM",
+      "price": 1150,
+      "rating": 4.9
+    }
+  ],
+  "cabs": [
+    {
+      "id": "cab_1",
+      "carModel": "Toyota Innova Crysta",
+      "serviceType": "Outstation & Airport Chauffeur",
+      "category": "6+1 Executive Captain Seats",
+      "baseFare": 2500,
+      "perKm": 18
+    },
+    {
+      "id": "cab_2",
+      "carModel": "Hyundai Verna Premium",
+      "serviceType": "City & Intercity Sedan",
+      "category": "4+1 Luxury Sedan",
+      "baseFare": 1400,
+      "perKm": 14
+    },
+    {
+      "id": "cab_3",
+      "carModel": "Tata Nexon EV Prime",
+      "serviceType": "Eco-friendly Airport Express",
+      "category": "4+1 Electric SUV",
+      "baseFare": 1200,
+      "perKm": 12
+    }
+  ],
+  "tours": [
+    {
+      "id": "tour_1",
+      "title": "Dal Lake Sunset Shikara & Floating Market",
+      "location": "Dal Lake, Srinagar",
+      "duration": "2.5 Hours",
+      "price": 999,
+      "rating": 4.9
+    },
+    {
+      "id": "tour_2",
+      "title": "Grande Island Scuba Diving & Dolphin Cruise",
+      "location": "Sinquerim Jetty, Goa",
+      "duration": "6 Hours",
+      "price": 2899,
+      "rating": 4.8
+    },
+    {
+      "id": "tour_3",
+      "title": "Munnar Tea Plantation Safari & Tea Tasting",
+      "location": "KDHP Lockhart Tea Estate, Munnar",
+      "duration": "4 Hours",
+      "price": 750,
+      "rating": 4.9
+    },
+    {
+      "id": "tour_4",
+      "title": "Amber Fort Jeep Safari & Light & Sound Show",
+      "location": "Amer, Jaipur",
+      "duration": "3 Hours",
+      "price": 1200,
+      "rating": 4.7
+    }
+  ],
+  "visa": [
+    {
+      "id": "visa_1",
+      "country": "United Arab Emirates (Dubai)",
+      "visaType": "30 Days Tourist eVisa",
+      "processingTime": "24 - 48 Hours",
+      "price": 6499,
+      "successRate": "99.8%"
+    },
+    {
+      "id": "visa_2",
+      "country": "Europe (Schengen)",
+      "visaType": "Tourist Short Stay C-Type",
+      "processingTime": "15 Days (Appointment Support)",
+      "price": 8999,
+      "successRate": "96.4%"
+    },
+    {
+      "id": "visa_3",
+      "country": "Thailand",
+      "visaType": "Single Entry eVisa on Arrival",
+      "processingTime": "Instant 24h",
+      "price": 3200,
+      "successRate": "99.9%"
+    },
+    {
+      "id": "visa_4",
+      "country": "Singapore",
+      "visaType": "30 Days Multi-Entry eVisa",
+      "processingTime": "3 Working Days",
+      "price": 2800,
+      "successRate": "99.2%"
+    }
+  ],
+  "cruise": [
+    {
+      "id": "cruise_1",
+      "cruiseName": "Cordelia Empress - Mumbai to Goa High Seas",
+      "shipClass": "5-Star Luxury Ocean Liner",
+      "sailingRoute": "Mumbai ➔ High Seas ➔ Goa ➔ Mumbai",
+      "duration": "3 Nights / 4 Days",
+      "price": 26999,
+      "rating": 4.8
+    },
+    {
+      "id": "cruise_2",
+      "cruiseName": "Antara Ganga Vilas River Heritage",
+      "shipClass": "Boutique River Yacht",
+      "sailingRoute": "Varanasi ➔ Patna ➔ Kolkata",
+      "duration": "4 Nights / 5 Days",
+      "price": 42000,
+      "rating": 4.9
+    }
+  ],
+  "forex": [
+    {
+      "id": "forex_1",
+      "title": "WonderLight Multi-Currency Borderless Card",
+      "type": "Zero Markup Contactless VISA",
+      "deliveryTime": "24h Express Doorstep",
+      "cardFee": 0,
+      "currenciesSupported": [
+        "USD",
+        "EUR",
+        "AED",
+        "GBP",
+        "SGD",
+        "THB",
+        "AUD",
+        "JPY"
+      ]
+    },
+    {
+      "id": "forex_2",
+      "title": "Mint Foreign Currency Cash Banknotes",
+      "type": "RBI Licensed Crisp Cash Notes",
+      "deliveryTime": "Same Day In-City",
+      "cardFee": 99,
+      "currenciesSupported": [
+        "USD",
+        "EUR",
+        "AED",
+        "GBP",
+        "SGD",
+        "THB"
+      ]
+    }
+  ],
+  "insurance": [
+    {
+      "id": "ins_1",
+      "planName": "WonderLight Global Explorer Platinum",
+      "provider": "Tata AIG / WonderLight Assurance",
+      "medicalCover": "$500,000 USD",
+      "pricePerDay": 149,
+      "benefits": [
+        "Emergency Medical Evacuation",
+        "Baggage Loss $2,000",
+        "Trip Cancellation 100% Refund",
+        "COVID-19 Hospitalization"
+      ]
+    },
+    {
+      "id": "ins_2",
+      "planName": "Domestic Himalayan Adventure Shield",
+      "provider": "ICICI Lombard",
+      "medicalCover": "₹10,00,000 INR",
+      "pricePerDay": 49,
+      "benefits": [
+        "High Altitude Sickness Cover",
+        "Helicopter Rescue Assistance",
+        "Flight Delay & Loss of Bag"
+      ]
+    }
+  ]
+}

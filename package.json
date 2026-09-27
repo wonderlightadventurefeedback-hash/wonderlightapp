@@ -1,0 +1,21 @@
+{
+  "name": "wonderlight",
+  "version": "1.0.0",
+  "description": "WonderLight Adventure - Master Cloud Admin Panel & Mobile Backend",
+  "main": "web/server.js",
+  "scripts": {
+    "dev": "node web/server.js",
+    "start": "node web/server.js",
+    "build": "node -e \"console.log('Build completed successfully.')\"",
+    "seed": "node web/setup-database.js",
+    "android": "gradlew.bat assembleDebug"
+  },
+  "keywords": [
+    "wonderlight",
+    "travel",
+    "admin",
+    "api"
+  ],
+  "author": "WonderLight",
+  "license": "ISC"
+}

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WonderLight Adventure — Master Cloud Admin Panel</title>
+  <meta name="description" content="WonderLight Adventure Travel Company — Secure Admin Management Panel for Bookings, Services, Users & Notifications">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============================================================ -->
+  <!-- LOGIN SCREEN -->
+  <!-- ============================================================ -->
+  <div id="login-screen" class="login-screen">
+    <div class="login-bg-orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="login-logo-mark">WA</div>
+        <div>
+          <h1 class="login-brand">WonderLight <span>ADVENTURE</span></h1>
+          <p class="login-brand-sub">Admin Management Portal</p>
+        </div>
+      </div>
+      <div class="login-divider"></div>
+      <h2 class="login-title">Administrator Sign In</h2>
+      <p class="login-subtitle">Secure access to the WonderLight Cloud Admin Panel. Authorised personnel only.</p>
+
+      <form id="login-form" onsubmit="handleAdminLogin(event)">
+        <div class="login-field">
+          <label for="login-email">Email Address</label>
+          <input type="email" id="login-email" placeholder="admin@wonderlight.com" required autocomplete="email">
+        </div>
+        <div class="login-field">
+          <label for="login-password">Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="login-password" placeholder="Enter your password" required autocomplete="current-password">
+            <button type="button" class="toggle-password" onclick="togglePasswordVisibility()" id="toggle-pw-btn" title="Show/hide password">👁</button>
+          </div>
+        </div>
+        <div id="login-error" class="login-error" style="display:none;"></div>
+        <button type="submit" class="btn-login" id="btn-login">
+          <span id="login-btn-text">Sign In to Admin Panel</span>
+          <svg id="login-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:none;animation:spin 0.8s linear infinite">
+            <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+          </svg>
+        </button>
+      </form>
+      <p class="login-footer-note">🔒 This portal is protected by Supabase authentication. Unauthorized access attempts are logged.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- ADMIN PANEL (Hidden until logged in) -->
+  <!-- ============================================================ -->
+  <div id="admin-panel" style="display:none; flex-direction:column; min-height:100vh;">
+
+    <!-- Top Navigation Header -->
+    <header class="admin-header">
+      <div class="header-left">
+        <div class="logo-mark">WA</div>
+        <div class="logo-text">
+          <h1>WonderLight <span>ADVENTURE</span></h1>
+          <p>Omni-Channel Cloud Admin &amp; Booking Management Engine</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="status-badge" id="server-status">
+          <span class="status-dot"></span>
+          <span class="status-label">Supabase Connected</span>
+        </div>
+
+        <!-- Reload & Live Sync System -->
+        <div class="reload-system-wrapper">
+          <div class="auto-reload-pill" id="auto-reload-pill" title="Toggle Auto-Reload Timer">
+            <span class="auto-reload-dot"></span>
+            <span id="auto-reload-display">Auto-Sync: 8s</span>
+            <select id="auto-reload-select" onchange="changeAutoReloadInterval(this.value)" title="Change auto-reload frequency">
+              <option value="5">5s</option>
+              <option value="8" selected>8s</option>
+              <option value="15">15s</option>
+              <option value="30">30s</option>
+              <option value="0">Off</option>
+            </select>
+            <button type="button" class="btn-toggle-auto" id="btn-toggle-auto" onclick="toggleAutoReload()" title="Pause/Play Auto-Sync">⏸</button>
+          </div>
+
+          <button class="btn-reload-primary" id="btn-reload-app" onclick="triggerManualReload()" title="Reload All Data (Shortcut: R)">
+            <svg class="reload-spinner-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+            </svg>
+            <span id="reload-btn-text">Reload App</span>
+            <span class="kbd-badge" title="Shortcut key">R</span>
+          </button>
+
+          <span class="last-synced-pill" id="last-synced-indicator">Synced: Just now</span>
+        </div>
+
+        <button class="btn-secondary" id="btn-sync-app" onclick="syncWithApp()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg>
+          Push to App
+        </button>
+
+        <div class="admin-profile" id="admin-profile-block">
+          <div class="avatar" id="admin-avatar-initials">AD</div>
+          <div class="admin-info">
+            <strong id="admin-display-name">Administrator</strong>
+            <span id="admin-display-email">admin@wonderlight.com</span>
+          </div>
+          <button class="btn-signout" id="btn-signout" onclick="handleAdminSignOut()" title="Sign Out">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Animated Reload Progress Bar -->
+    <div class="reload-progress-bar" id="reload-progress-bar"></div>
+
+    <!-- Main Layout -->
+    <div class="admin-layout">
+      <!-- Sidebar -->
+      <aside class="admin-sidebar">
+        <div class="sidebar-section-title">MANAGEMENT CONSOLE</div>
+        <nav class="sidebar-nav">
+          <button class="nav-item active" data-category="bookings" onclick="switchCategory('bookings')" id="nav-bookings">
+            <span class="icon">📋</span>
+            <span class="label">Customer Bookings</span>
+            <span class="badge" id="badge-bookings">0</span>
+          </button>
+
+          <button class="nav-item" data-category="users" onclick="switchCategory('users')" id="nav-users">
+            <span class="icon">👥</span>
+            <span class="label">Registered Users</span>
+            <span class="badge" id="badge-users">0</span>
+          </button>
+
+          <button class="nav-item" data-category="notifications" onclick="switchCategory('notifications')" id="nav-notifications">
+            <span class="icon">🔔</span>
+            <span class="label">Send Notifications</span>
+            <span class="badge badge-new" id="badge-notifications">NEW</span>
+          </button>
+
+          <button class="nav-item" data-category="wallet" onclick="switchCategory('wallet')" id="nav-wallet">
+            <span class="icon">💰</span>
+            <span class="label">Wallet &amp; Signup Bonus</span>
+            <span class="badge badge-confirmed" id="badge-wallet">₹2,500</span>
+          </button>
+
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-section-title">ALL 12 TRAVEL SERVICES</div>
+
+          <button class="nav-item" data-category="flights" onclick="switchCategory('flights')">
+            <span class="icon">✈️</span>
+            <span class="label">Flights</span>
+            <span class="badge" id="badge-flights">0</span>
+          </button>
+          <button class="nav-item" data-category="hotels" onclick="switchCategory('hotels')">
+            <span class="icon">🏨</span>
+            <span class="label">Hotels &amp; Resorts</span>
+            <span class="badge" id="badge-hotels">0</span>
+          </button>
+          <button class="nav-item" data-category="villas" onclick="switchCategory('villas')">
+            <span class="icon">🏡</span>
+            <span class="label">Villas &amp; Homestays</span>
+            <span class="badge" id="badge-villas">0</span>
+          </button>
+          <button class="nav-item" data-category="holidays" onclick="switchCategory('holidays')">
+            <span class="icon">🌴</span>
+            <span class="label">Holiday Packages</span>
+            <span class="badge" id="badge-holidays">0</span>
+          </button>
+          <button class="nav-item" data-category="trains" onclick="switchCategory('trains')">
+            <span class="icon">🚆</span>
+            <span class="label">Trains</span>
+            <span class="badge" id="badge-trains">0</span>
+          </button>
+          <button class="nav-item" data-category="buses" onclick="switchCategory('buses')">
+            <span class="icon">🚌</span>
+            <span class="label">Buses</span>
+            <span class="badge" id="badge-buses">0</span>
+          </button>
+          <button class="nav-item" data-category="cabs" onclick="switchCategory('cabs')">
+            <span class="icon">🚖</span>
+            <span class="label">Cabs &amp; Transfers</span>
+            <span class="badge" id="badge-cabs">0</span>
+          </button>
+          <button class="nav-item" data-category="tours" onclick="switchCategory('tours')">
+            <span class="icon">🎟️</span>
+            <span class="label">Tours &amp; Activities</span>
+            <span class="badge" id="badge-tours">0</span>
+          </button>
+          <button class="nav-item" data-category="visa" onclick="switchCategory('visa')">
+            <span class="icon">🛂</span>
+            <span class="label">Visa Assistance</span>
+            <span class="badge" id="badge-visa">0</span>
+          </button>
+          <button class="nav-item" data-category="cruise" onclick="switchCategory('cruise')">
+            <span class="icon">🚢</span>
+            <span class="label">Luxury Cruises</span>
+            <span class="badge" id="badge-cruise">0</span>
+          </button>
+          <button class="nav-item" data-category="forex" onclick="switchCategory('forex')">
+            <span class="icon">💳</span>
+            <span class="label">Forex Card &amp; Cash</span>
+            <span class="badge" id="badge-forex">0</span>
+          </button>
+          <button class="nav-item" data-category="insurance" onclick="switchCategory('insurance')">
+            <span class="icon">🛡️</span>
+            <span class="label">Travel Insurance</span>
+            <span class="badge" id="badge-insurance">0</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="device-sync-card">
+            <div class="phone-icon">📱</div>
+            <div>
+              <strong>Android App Connected</strong>
+              <p>Live sync via Supabase Cloud</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="admin-main">
+        <!-- Quick Metric KPI Counters -->
+        <section class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon blue">💰</div>
+            <div class="kpi-details">
+              <span class="kpi-label">Total Booking Volume</span>
+              <h2 id="kpi-revenue">₹0</h2>
+              <span class="kpi-sub positive">↑ Supabase Realtime Sync</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon emerald">📋</div>
+            <div class="kpi-details">
+              <span class="kpi-label">Customer Bookings</span>
+              <h2 id="kpi-bookings-count">0</h2>
+              <span class="kpi-sub">Across All 12 Categories</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon purple">👥</div>
+            <div class="kpi-details">
+              <span class="kpi-label">Registered Users</span>
+              <h2 id="kpi-users-count">0</h2>
+              <span class="kpi-sub">Verified App Accounts</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon amber">⚡</div>
+            <div class="kpi-details">
+              <span class="kpi-label">Active Services</span>
+              <h2 id="kpi-inventory-count">0</h2>
+              <span class="kpi-sub positive">Live in Mobile App</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Category Management Header -->
+        <section class="content-header">
+          <div class="content-header-title">
+            <h2 id="current-category-title">Customer Bookings</h2>
+            <p id="current-category-desc">Manage, confirm, inspect, or remove customer bookings generated by the mobile app.</p>
+          </div>
+          <div class="content-header-actions">
+            <div class="search-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              <input type="text" id="filter-input" placeholder="Search by name, route, ID..." oninput="onSearchFilter(this.value)">
+            </div>
+            <button class="btn-reload-secondary" id="btn-reload-current-cat" onclick="triggerCategoryReload()" title="Reload this table">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
+              <span>Reload Table</span>
+            </button>
+            <button class="btn-primary" id="btn-add-item" onclick="openAddModal()" style="display:none;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              Add New Item
+            </button>
+          </div>
+        </section>
+
+        <!-- Data Table / Grid Container -->
+        <section class="data-container">
+          <div id="loading-state" class="state-box" style="display: none;">
+            <div class="spinner"></div>
+            <p>Syncing with Supabase...</p>
+          </div>
+
+          <!-- Notifications Panel (conditionally shown) -->
+          <div id="notifications-panel" style="display:none; padding:32px;">
+            <div class="notif-layout">
+              <!-- Compose Notification -->
+              <div class="notif-compose-card">
+                <div class="notif-compose-header">
+                  <span class="notif-icon">🔔</span>
+                  <div>
+                    <h3>Compose &amp; Send Notification</h3>
+                    <p>Push a message directly to all app users or a specific user</p>
+                  </div>
+                </div>
+                <form id="notif-form" onsubmit="handleSendNotification(event)">
+                  <div class="notif-field">
+                    <label>Notification Title</label>
+                    <input type="text" id="notif-title" placeholder="e.g. 🎉 Exclusive Weekend Deal!" required maxlength="80">
+                  </div>
+                  <div class="notif-field">
+                    <label>Message Body</label>
+                    <textarea id="notif-body" rows="3" placeholder="Write a compelling message for your users..." required maxlength="300"></textarea>
+                  </div>
+                  <div class="notif-field">
+                    <label>Notification Type</label>
+                    <select id="notif-type">
+                      <option value="promotion">🎁 Promotion / Deal</option>
+                      <option value="booking_update">📋 Booking Update</option>
+                      <option value="alert">⚠️ Alert / Important</option>
+                      <option value="welcome">👋 Welcome Message</option>
+                      <option value="custom">✏️ Custom</option>
+                    </select>
+                  </div>
+                  <div class="notif-field">
+                    <label>Send To</label>
+                    <select id="notif-target">
+                      <option value="all">📣 All Registered Users</option>
+                      <option value="specific">👤 Specific User (enter email below)</option>
+                    </select>
+                  </div>
+                  <div class="notif-field" id="notif-specific-user-field" style="display:none;">
+                    <label>Target User Email</label>
+                    <input type="email" id="notif-specific-email" placeholder="user@example.com">
+                  </div>
+                  <button type="submit" class="btn-send-notif" id="btn-send-notif">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    Send Notification
+                  </button>
+                </form>
+              </div>
+
+              <!-- Sent Notifications Log -->
+              <div class="notif-log-card">
+                <div class="notif-log-header">
+                  <h3>📜 Notification History</h3>
+                  <span id="notif-log-count" class="badge-status badge-confirmed">0 sent</span>
+                </div>
+                <div id="notif-log-list">
+                  <div class="notif-empty">No notifications sent yet. Compose one to get started.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wallet & Signup Bonus Control Panel (conditionally shown) -->
+          <div id="wallet-panel" style="display:none; padding:32px;">
+            <div class="notif-layout">
+              <div class="notif-compose-card" style="max-width: 600px;">
+                <div class="notif-compose-header">
+                  <span class="notif-icon">🪙</span>
+                  <div>
+                    <h3>WonderCash Welcome Bonus Controller</h3>
+                    <p>Admin control for user signup wallet balance</p>
+                  </div>
+                </div>
+
+                <div class="wallet-current-kpi" style="background: linear-gradient(135deg, rgba(8,77,92,0.06), rgba(227,100,20,0.08)); border: 1.5px solid rgba(8,77,92,0.15); border-radius: 16px; padding: 20px; margin-bottom: 24px; text-align: center;">
+                  <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #64748b; font-weight: 700;">Active Signup Balance Provided</span>
+                  <div id="display-current-bonus" style="font-size: 38px; font-weight: 800; color: #084D5C; margin: 8px 0;">₹2,500</div>
+                  <p style="font-size: 12px; color: #16a34a; font-weight: 600; margin: 0;">⚡ Credited automatically to every new verified user upon registration</p>
+                </div>
+
+                <form id="wallet-bonus-form" onsubmit="handleSaveWalletBonus(event)">
+                  <div class="notif-field">
+                    <label style="font-weight: 700; color: #1e293b;">Set New Welcome Bonus Amount (₹)</label>
+                    <div style="display: flex; align-items: center; background: #fff; border: 1.5px solid #cbd5e1; border-radius: 12px; overflow: hidden;">
+                      <span style="padding: 12px 16px; background: #f8fafc; font-weight: 800; color: #084D5C; border-right: 1.5px solid #cbd5e1;">₹</span>
+                      <input type="number" id="input-signup-bonus" min="0" max="50000" step="50" value="2500" required style="border: none; padding: 12px 16px; width: 100%; font-size: 18px; font-weight: 700; color: #0f172a; outline: none;">
+                    </div>
+                  </div>
+
+                  <div class="notif-field">
+                    <label style="font-size: 12px; color: #64748b; font-weight: 600;">Fast Presets:</label>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                      <button type="button" class="preset-pill" onclick="setPresetBonus(500)" style="padding: 6px 14px; border-radius: 20px; border: 1px solid #cbd5e1; background: #f1f5f9; cursor: pointer; font-weight: 600; font-size: 13px;">₹500</button>
+                      <button type="button" class="preset-pill" onclick="setPresetBonus(1000)" style="padding: 6px 14px; border-radius: 20px; border: 1px solid #cbd5e1; background: #f1f5f9; cursor: pointer; font-weight: 600; font-size: 13px;">₹1,000</button>
+                      <button type="button" class="preset-pill" onclick="setPresetBonus(2000)" style="padding: 6px 14px; border-radius: 20px; border: 1px solid #cbd5e1; background: #f1f5f9; cursor: pointer; font-weight: 600; font-size: 13px;">₹2,000</button>
+                      <button type="button" class="preset-pill" onclick="setPresetBonus(2500)" style="padding: 6px 14px; border-radius: 20px; border: 1px solid #084D5C; background: #084D5C; color: #fff; cursor: pointer; font-weight: 600; font-size: 13px;">₹2,500</button>
+                      <button type="button" class="preset-pill" onclick="setPresetBonus(5000)" style="padding: 6px 14px; border-radius: 20px; border: 1px solid #cbd5e1; background: #f1f5f9; cursor: pointer; font-weight: 600; font-size: 13px;">₹5,000</button>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn-send-notif" id="btn-save-wallet-bonus" style="margin-top: 16px; background: linear-gradient(135deg, #084D5C, #0E7490); width: 100%;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                    Save Signup Bonus &amp; Sync to Mobile App
+                  </button>
+                </form>
+              </div>
+
+              <!-- Information & Rule Guide -->
+              <div class="notif-log-card">
+                <div class="notif-log-header">
+                  <h3>💡 How Signup Balance Works</h3>
+                </div>
+                <div style="padding: 20px; color: #334155; font-size: 13px; line-height: 1.7;">
+                  <p><strong>1. Automatic Mobile App Sync:</strong><br>The mobile app retrieves this setting dynamically on startup and whenever a traveler creates an account.</p>
+                  <p style="margin-top: 12px;"><strong>2. Verified User Activation:</strong><br>When a new traveler registers via Supabase Auth, WonderLight initializes their WonderCash balance with this exact amount.</p>
+                  <p style="margin-top: 12px;"><strong>3. System Phone Notification:</strong><br>As soon as signup completes, a high-priority system status notification is displayed on their phone status bar congratulating them on their welcome bonus!</p>
+                  <p style="margin-top: 12px;"><strong>4. Instant Checkout Use:</strong><br>Users can apply this WonderCash balance toward flights, hotels, trains, and holiday bookings.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Users Panel (conditionally shown) -->
+          <div id="users-panel" style="display:none;">
+          </div>
+
+          <div id="table-container" class="table-responsive">
+            <!-- Dynamic Table Injected by JS -->
+          </div>
+
+          <div id="empty-state" class="state-box" style="display: none;">
+            <div class="empty-icon">📂</div>
+            <h3>No Items Found</h3>
+            <p>No listings match your search query or this category is currently empty.</p>
+            <button class="btn-secondary" onclick="openAddModal()">Add First Item</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Add / Edit Modal -->
+    <div class="modal-backdrop" id="edit-modal" style="display: none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <h3 id="modal-title">Add Travel Service Item</h3>
+            <p id="modal-subtitle">Configure details, pricing, and live parameters</p>
+          </div>
+          <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+
+        <form id="service-form" onsubmit="handleFormSubmit(event)">
+          <div id="form-dynamic-fields" class="form-grid">
+            <!-- Dynamically generated fields -->
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+            <button type="submit" class="btn-primary" id="btn-save-item">Save &amp; Publish to App</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- User Detail Modal -->
+    <div class="modal-backdrop" id="user-detail-modal" style="display: none;">
+      <div class="modal-content modal-user">
+        <div class="modal-header">
+          <div>
+            <h3 id="user-modal-title">User Profile</h3>
+            <p id="user-modal-subtitle">Registered user account details</p>
+          </div>
+          <button class="modal-close" onclick="closeUserModal()">&times;</button>
+        </div>
+        <div id="user-detail-body" class="user-detail-body"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="closeUserModal()">Close</button>
+          <button type="button" class="btn-primary" id="btn-notify-user" onclick="notifyThisUser()">
+            🔔 Send Notification
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-backdrop" id="delete-modal" style="display: none;">
+      <div class="modal-content modal-small">
+        <div class="modal-header">
+          <h3>Confirm Deletion</h3>
+          <button class="modal-close" onclick="closeDeleteModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to permanently delete <strong id="delete-item-title">this item</strong>?</p>
+          <p class="warning-text">This will immediately remove it from the mobile app and online catalog.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+          <button type="button" class="btn-danger" id="btn-confirm-delete" onclick="confirmDelete()">Delete Item</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">Operation completed successfully</div>
+
+  </div><!-- end #admin-panel -->
+
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
